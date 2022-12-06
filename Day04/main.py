@@ -68,6 +68,9 @@ def partial_overlap(data):
         if ((elf1_start <= elf2_end) and (elf1_end >= elf2_start)):
             count += 1
 
+        # if set(range(elf1_start, elf1_end + 1)) & set(range(elf2_start, elf2_end + 1)):
+        #     count += 1
+
     return count
 
 def complete_overlap(data):
