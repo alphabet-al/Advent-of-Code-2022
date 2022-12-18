@@ -99,7 +99,8 @@ def astar(maze, start, end):
 
             # Create the f, g, and h values
             child.g = current_node.g + 1
-            child.h = ((child.position[0] - end_node.position[0]) ** 2) + ((child.position[1] - end_node.position[1]) ** 2)
+            # child.h = ((child.position[0] - end_node.position[0]) ** 2) + ((child.position[1] - end_node.position[1]) ** 2)
+            child.h = abs(child.position[0] - end_node.position[0]) + abs(child.position[1] - end_node.position[1])
             child.f = child.g + child.h
 
             # Child is already in the open list
@@ -144,30 +145,30 @@ def find_SnE(data):
 def main(maze):
     start, end = find_SnE(maze)
 
-    n = len(maze)
-    m = len(maze[0])
+    # n = len(maze)
+    # m = len(maze[0])
 
-    visited = [[False] * m for _ in range(n)]
-    heap = [(0, start[0], start[1])]
+    # visited = [[False] * m for _ in range(n)]
+    # heap = [(0, start[0], start[1])]
 
-    while True:
-        steps, i, j = heappop(heap)    
+    # while True:
+    #     steps, i, j = heappop(heap)    
 
-        if visited[i][j]:
-            continue
-        visited[i][j] = True
+    #     if visited[i][j]:
+    #         continue
+    #     visited[i][j] = True
 
-        if(i,j) == end:
-            print(steps)
-            break
+    #     if(i,j) == end:
+    #         print(steps)
+    #         break
         
-        for ii, jj in neighbors(n, m, maze, i, j):
-            heappush(heap, (steps + 1, ii, jj))
+    #     for ii, jj in neighbors(n, m, maze, i, j):
+    #         heappush(heap, (steps + 1, ii, jj))
 
 
-    # path = astar(maze, start, end)
-    # print(len(path) - 1)
-    # print(path)
+    path = astar(maze, start, end)
+    print(len(path) - 1)
+    print(path)
 
 
 
